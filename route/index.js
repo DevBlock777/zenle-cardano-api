@@ -35,4 +35,8 @@ router.post("/mint", async (req, res) => {
     
     })
 
+router.get("/", (req, res) => {
+    res.send("Welcome to zenzenle cardno API")
+})
+
 export default router
