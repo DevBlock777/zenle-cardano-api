@@ -6,7 +6,7 @@ const PORT = 3000
 
 app.use(cors({
     "origin": "*",
-    "methods": "POST"
+    "methods": ["POST",'GET']
 }))
 app.use(json())
 app.use(router)
