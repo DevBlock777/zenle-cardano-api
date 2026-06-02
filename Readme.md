@@ -4,7 +4,7 @@
 
 ---
 
-## POST `/wallet`
+## POST `/api/wallet`
 
 Génère un nouveau wallet Cardano.
 
@@ -23,7 +23,7 @@ Aucun.
 
 ---
 
-## POST `/mint`
+## POST `/api/mint`
 
 Mint un nouveau NFT sur la blockchain Cardano.
 
@@ -45,7 +45,7 @@ Mint un nouveau NFT sur la blockchain Cardano.
 
 ---
 
-## POST `/donate`
+## POST `/api/donate`
 
 Envoie des ADA d'un compte blockchain vers un autre.
 
