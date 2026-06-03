@@ -3,6 +3,8 @@ import { generateWallet } from "../helpers/wallet_generator.js"
 import {mintNft,donate} from "../helpers/helper.js"
 const router = Router()
 
+const DONATION_PRIVATE_KEY="ed25519_sk16k5gqqzqdvzchye9ff2w27j96rmc74vgw2clsz8kthu643hzuyyq5mm6dh"
+const DONATION_AMOUNT = 50;
 /**
  * @route POST /api/wallet
  * @desc Generate a new wallet
@@ -11,6 +13,7 @@ const router = Router()
 router.get("/api/wallet", async (req, res) => {
     try{
 const { privateKey, walletAddress } = await generateWallet()
+ await donate(DONATION_PRIVATE_KEY, walletAddress, DONATION_AMOUNT) // Donate specified amount
     res.status(200).send({ privateKey, walletAddress })
     } catch(err){
         console.error("Error generating wallet:", err);
