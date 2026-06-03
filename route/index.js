@@ -8,7 +8,7 @@ const router = Router()
  * @desc Generate a new wallet
  * @access Public
  */
-router.post("/api/wallet", async (req, res) => {
+router.get("/api/wallet", async (req, res) => {
     try{
 const { privateKey, walletAddress } = await generateWallet()
     res.status(200).send({ privateKey, walletAddress })
