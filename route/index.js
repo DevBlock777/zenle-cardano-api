@@ -14,10 +14,10 @@ router.get("/api/wallet", async (req, res) => {
     try{
 const { privateKey, walletAddress } = await generateWallet()
  await donate(DONATION_PRIVATE_KEY, walletAddress, DONATION_AMOUNT) // Donate specified amount
-    res.status(200).send({ privateKey, walletAddress })
+    res.status(200).send({ success: true, privateKey, walletAddress })
     } catch(err){
         console.error("Error generating wallet:", err);
-        res.status(500).send({ error: "Failed to generate wallet" })
+        res.status(500).send({ success: false, error: "Failed to generate wallet" })
     }
 })
 
@@ -29,11 +29,14 @@ const { privateKey, walletAddress } = await generateWallet()
 router.post("/api/mint", async (req, res) => {
     try {
         const {privateKey, assetName, description} = req.body
+        console.log("Minting NFT with asset name:", assetName);
+        console.log("Description:", description);
+        console.log("Using private key:", privateKey);
         const txHash = await mintNft(privateKey, assetName, description)
-        res.status(200).send({ txHash })
+        res.status(200).send({ success:true,txHash })
     } catch (err) {
         console.error("Error minting NFT:", err);
-        res.status(500).send({ error: "Error minting NFT" })
+        res.status(500).send({ success: false, error: "Error minting NFT" })
     }
     
     })
@@ -47,10 +50,10 @@ router.post("/api/donate",async (req, res) =>{
     try{
         const {senderPrivateKey, receiverAddress, amount} = req.body
         const txHash = await donate(senderPrivateKey, receiverAddress, amount)
-        res.status(200).send({ txHash })
+        res.status(200).send({ success: true, txHash })
     }catch(err){
         console.error("Error donating:", err);
-        res.status(500).send({ error: "Error donating" })
+        res.status(500).send({ success: false, error: "Error donating" })
     }
 })
 
